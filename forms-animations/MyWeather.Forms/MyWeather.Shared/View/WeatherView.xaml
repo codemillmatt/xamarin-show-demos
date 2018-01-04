@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyWeather.View.WeatherView"
+             xmlns:effects="clr-namespace:MyWeather.Effects;assembly=MyWeather"
+             xmlns:controls="clr-namespace:MyWeather.Controls;assembly=MyWeather"
+             Title="Weather">
+    <StackLayout Padding="10" Spacing="10" x:Name="overallStack">
+        <Entry Text="{Binding Location}">
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry"
+                             Binding="{Binding UseGPS}"
+                             Value="true">
+                    <Setter Property="IsEnabled" Value="false"/>
+                </DataTrigger>
+            </Entry.Triggers>
+        </Entry>
+
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Label Text="Use GPS" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"/>
+            <Switch IsToggled="{Binding UseGPS}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Label Text="Use Imperial" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"/>
+            <Switch IsToggled="{Binding IsImperial}"/>
+        </StackLayout>
+
+
+        <Button Text="Get Weather" Clicked="Handle_Clicked" BackgroundColor="#3498db" TextColor="White" x:Name="getWeatherButton"/>
+        <Label x:Name="tempLabel" Text="{Binding Temp}" FontSize="24"/>
+
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Image x:Name="conditionImage" HeightRequest="44" 
+               WidthRequest="44" 
+               Source="{Binding ConditionIcon}"/>
+            <Label x:Name="conditionLabel" Text="{Binding Condition}" VerticalOptions="Center" />
+        </StackLayout>
+
+       <StackLayout Padding="20">
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>
+        </StackLayout>
+
+    </StackLayout>
+</ContentPage>
