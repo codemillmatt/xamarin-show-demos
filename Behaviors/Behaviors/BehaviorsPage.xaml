@@ -1,22 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Behaviors" x:Class="Behaviors.BehaviorsPage" Title="Various Behaviors">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:Behaviors" 
+    x:Class="Behaviors.BehaviorsPage"
+    x:Name="overallContent"
+    Title="Various Behaviors">
     <ContentPage.BindingContext>
-        <local:BehaviorsPageViewModel />
+        <local:BehaviorsPageViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
 
-    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,40">
+    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,40" Spacing="30">
         <Label Text="Beard Rater" FontSize="48" FontAttributes="Bold" />
-        <Picker Margin="0,50" Title="Rate your beard" ItemsSource="{Binding BeardRatings}" SelectedIndex="0" SelectedItem="{Binding SelectedBeardRating}">
+        
+        <Picker Title="Rate your beard" 
+            ItemsSource="{Binding BeardRatings}" 
+            SelectedItem="{Binding SelectedBeardRating}" 
+            ItemDisplayBinding="{Binding Description}">
+                       
             <Picker.Behaviors>
-                <local:BeardValidator AcceptableBeardRating="4" x:Name="beardVal" />
+                <!--
+                <local:SimplePickerValidator x:Name="pickerValidator" />
+                -->
+
+                <local:PickerColorBehavior ValidValues="{x:Static local:BehaviorsPageViewModel.ValidRatings}" InvalidColor="Fuchsia" x:Name="pickerValidator" />
             </Picker.Behaviors>
         </Picker>
-        <Label Text="Describe your beard" Margin="0,30" />
+
+        <Label Text="{Binding Source={x:Reference pickerValidator}, Path=IsValid}" />
+        
+    </StackLayout>
+</ContentPage>
+
+
+<!--
+
+<Label Text="{Binding Source={x:Reference pickerValidator}, Path=IsValid}" />
+
+<local:PickerColorBehavior ValidValues="{x:Static local:BehaviorsPageViewModel.ValidRatings}" InvalidColor="Fuchsia" x:Name="pickerValidator" />
+
+<Label Text="Describe your beard" />
         <Entry>
             <Entry.Behaviors>
                 <local:EntryPressCommandBehavior Command="{Binding EntryPressCommand}" />
             </Entry.Behaviors>
-        </Entry>
-        <Label Text="{Binding Source={x:Reference beardVal}, Path=IsValid}" />
-    </StackLayout>
-</ContentPage>
+        </Entry>               
+-->

@@ -8,23 +8,32 @@ namespace Behaviors
 {
     public class BehaviorsPageViewModel : BaseViewModel
     {
-        ObservableCollection<string> beardRatings = new ObservableCollection<string>
+        ObservableCollection<Ratings> beardRatings = new ObservableCollection<Ratings>
         {
-            "Fair - 0",
-            "Good - 1",
-            "Cool - 2",
-            "Great - 3",
-            "Magnificent - 4"
+            new Ratings{ Description="Fair", StarRating=0 },
+            new Ratings{ Description="Good", StarRating=1 },
+            new Ratings{ Description = "Cool", StarRating=2 },
+            new Ratings{ Description="Great", StarRating=3 },
+            new Ratings{ Description= "Magnificent", StarRating=4 }
         };
 
-        public ObservableCollection<string> BeardRatings
+        public ObservableCollection<Ratings> BeardRatings
         { get => beardRatings; }
 
-        string selectedRating;
-        public string SelectedBeardRating
+        Ratings selectedRating;
+        public Ratings SelectedBeardRating
         {
             get => selectedRating;
             set => SetProperty(ref selectedRating, value);
+        }
+
+        public static string[] ValidRatings = {
+            "Good","Magnificent"
+        };
+
+        public BehaviorsPageViewModel()
+        {
+            SelectedBeardRating = BeardRatings[0];
         }
 
         ICommand entryPressCommand;
@@ -43,5 +52,6 @@ namespace Behaviors
             else if (input.ToLower().Contains("magnificent"))
                 SelectedBeardRating = BeardRatings[4];
         }
+
     }
 }

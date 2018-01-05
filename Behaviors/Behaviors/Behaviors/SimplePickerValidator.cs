@@ -3,17 +3,9 @@ using Xamarin.Forms;
 
 namespace Behaviors
 {
-    public class BeardValidatorBehavior : Behavior<Picker>
+    public class SimplePickerValidator : Behavior<Picker>
     {
-        static readonly BindableProperty AcceptableBeardRatingProperty = BindableProperty.Create(nameof(AcceptableBeardRating), typeof(int), typeof(BeardValidatorBehavior), 3);
-
-        public int AcceptableBeardRating
-        {
-            get => (int)GetValue(AcceptableBeardRatingProperty);
-            set => SetValue(AcceptableBeardRatingProperty, value);
-        }
-
-        public static BindableProperty IsValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(BeardValidatorBehavior), false);
+        public static BindableProperty IsValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(SimplePickerValidator), false);
 
         public bool IsValid
         {
@@ -24,8 +16,6 @@ namespace Behaviors
         protected override void OnAttachedTo(Picker bindable)
         {
             bindable.SelectedIndexChanged += Bindable_SelectedIndexChanged;
-
-            Bindable_SelectedIndexChanged(bindable, null);
         }
 
         protected override void OnDetachingFrom(Picker bindable)
@@ -38,7 +28,7 @@ namespace Behaviors
             if (!(sender is Picker bindable))
                 return;
 
-            IsValid = bindable.SelectedIndex >= AcceptableBeardRating;
+            IsValid = bindable.SelectedIndex >= bindable.Items.Count / 2;
 
             if (IsValid)
                 bindable.BackgroundColor = Color.Default;
