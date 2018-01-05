@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:Animate" 
+    x:Class="Animate.AnimatePage"
+    Title="Animations">
+    <StackLayout Orientation="Vertical" VerticalOptions="Center" Padding="50" Spacing="10">
+        <Button x:Name="translateButton" Text="Translation" BackgroundColor="#f25022" TextColor="Black" FontSize="40" Clicked="Translate_Clicked" />
+
+        <Button x:Name="scaleButton" Text="Scale" BackgroundColor="#7fba00" TextColor="Black" FontSize="40" Clicked="Scale_Clicked" /> 
+
+        <Button x:Name="rotateButton" Text="Rotate" BackgroundColor="#00a4ef" TextColor="Black" Font="40" Clicked="Rotate_Clicked" />
+
+        <Button x:Name="fadeButton" Text="Fade" BackgroundColor="#ffb900" TextColor="Black" Font="40" Clicked="Fade_Clicked" />
+    </StackLayout>
+</ContentPage>
