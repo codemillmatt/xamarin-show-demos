@@ -16,7 +16,7 @@ namespace Animate
             await translateButton.TranslateTo(0, -100);
             await translateButton.TranslateTo(100, -100);
             await translateButton.TranslateTo(100, 0);
-            await translateButton.TranslateTo(0, 0);
+            await translateButton.TranslateTo(0, 0, 500, Easing.BounceOut);
         }
 
         async void Scale_Clicked(object sender, System.EventArgs e)
@@ -28,13 +28,13 @@ namespace Animate
         async void Rotate_Clicked(object sender, System.EventArgs e)
         {
             await rotateButton.RotateTo(180);
-            await rotateButton.RotateTo(0, 500, easing: Easing.BounceOut);
+            await rotateButton.RotateTo(0, 500, Easing.BounceOut);
         }
 
         async void Fade_Clicked(object sender, System.EventArgs e)
         {
-            await fadeButton.FadeTo(0, 500);
-            await fadeButton.FadeTo(1, 500);
+            await fadeButton.FadeTo(0, 400);
+            await fadeButton.FadeTo(.25, 1000, Easing.SinOut);
         }
     }
 }

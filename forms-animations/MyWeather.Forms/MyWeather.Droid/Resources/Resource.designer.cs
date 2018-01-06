@@ -3895,8 +3895,8 @@ namespace MyWeather.Droid
 			// aapt resource value: 0x7f090011
 			public const int accept = 2131296273;
 			
-			// aapt resource value: 0x7f090062
-			public const int app_name = 2131296354;
+			// aapt resource value: 0x7f09005b
+			public const int app_name = 2131296347;
 			
 			// aapt resource value: 0x7f090051
 			public const int appbar_scrolling_view_behavior = 2131296337;
@@ -3978,27 +3978,6 @@ namespace MyWeather.Droid
 			
 			// aapt resource value: 0x7f090018
 			public const int decline = 2131296280;
-			
-			// aapt resource value: 0x7f09005d
-			public const int default_web_client_id = 2131296349;
-			
-			// aapt resource value: 0x7f09005e
-			public const int firebase_database_url = 2131296350;
-			
-			// aapt resource value: 0x7f09005b
-			public const int gcm_defaultSenderId = 2131296347;
-			
-			// aapt resource value: 0x7f09005f
-			public const int google_api_key = 2131296351;
-			
-			// aapt resource value: 0x7f09005c
-			public const int google_app_id = 2131296348;
-			
-			// aapt resource value: 0x7f090060
-			public const int google_crash_reporting_api_key = 2131296352;
-			
-			// aapt resource value: 0x7f090061
-			public const int google_storage_bucket = 2131296353;
 			
 			// aapt resource value: 0x7f09001b
 			public const int mr_button_content_description = 2131296283;
