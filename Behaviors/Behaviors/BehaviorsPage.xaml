@@ -4,30 +4,21 @@
     xmlns:local="clr-namespace:Behaviors" 
     x:Class="Behaviors.BehaviorsPage"
     x:Name="overallContent"
-    Title="Various Behaviors">
+    Title="Beards!">
     <ContentPage.BindingContext>
         <local:BehaviorsPageViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
 
-    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,40" Spacing="30">
-        <Label Text="Beard Rater" FontSize="48" FontAttributes="Bold" />
+    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,40" Spacing="30" Padding="30,0">
+        <Label Text="How Does My Beard Look?" FontSize="32" FontAttributes="Bold" HorizontalTextAlignment="Center" />
         
         <Picker Title="Rate your beard" 
             ItemsSource="{Binding BeardRatings}" 
             SelectedItem="{Binding SelectedBeardRating}" 
             ItemDisplayBinding="{Binding Description}">
-                       
-            <Picker.Behaviors>
-                <!--
-                <local:SimplePickerValidator x:Name="pickerValidator" />
-                -->
 
-                <local:PickerColorBehavior ValidValues="{x:Static local:BehaviorsPageViewModel.ValidRatings}" InvalidColor="Fuchsia" x:Name="pickerValidator" />
-            </Picker.Behaviors>
         </Picker>
-
-        <Label Text="{Binding Source={x:Reference pickerValidator}, Path=IsValid}" />
-        
+                              
     </StackLayout>
 </ContentPage>
 
@@ -38,7 +29,7 @@
 
 <local:PickerColorBehavior ValidValues="{x:Static local:BehaviorsPageViewModel.ValidRatings}" InvalidColor="Fuchsia" x:Name="pickerValidator" />
 
-<Label Text="Describe your beard" />
+<Label Text="Beard Diary" Margin="0,-20" />
         <Entry>
             <Entry.Behaviors>
                 <local:EntryPressCommandBehavior Command="{Binding EntryPressCommand}" />

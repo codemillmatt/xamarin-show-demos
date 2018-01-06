@@ -5,14 +5,6 @@ namespace Behaviors
 {
     public class SimplePickerValidator : Behavior<Picker>
     {
-        public static BindableProperty IsValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(SimplePickerValidator), false);
-
-        public bool IsValid
-        {
-            get => (bool)GetValue(IsValidProperty);
-            private set => SetValue(IsValidProperty, value);
-        }
-
         protected override void OnAttachedTo(Picker bindable)
         {
             bindable.SelectedIndexChanged += Bindable_SelectedIndexChanged;
@@ -25,16 +17,26 @@ namespace Behaviors
 
         void Bindable_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!(sender is Picker bindable))
-                return;
+            var picker = (Picker)sender;
 
-            IsValid = bindable.SelectedIndex >= bindable.Items.Count / 2;
+            var isValid = picker.SelectedIndex >= picker.Items.Count / 2;
 
-            if (IsValid)
-                bindable.BackgroundColor = Color.Default;
+            if (isValid)
+                picker.BackgroundColor = Color.Default;
             else
-                bindable.BackgroundColor = Color.Salmon;
-
+                picker.BackgroundColor = Color.Salmon;
         }
     }
 }
+
+#region comments
+
+//public static BindableProperty IsValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(SimplePickerValidator), false);
+
+//public bool IsValid
+//{
+//    get => (bool)GetValue(IsValidProperty);
+//    private set => SetValue(IsValidProperty, value);
+//}
+
+#endregion
