@@ -44,7 +44,6 @@ namespace Behaviors
         protected override void OnAttachedTo(Picker bindable)
         {
             bindable.SelectedIndexChanged += Bindable_SelectedIndexChanged;
-            bindable.BackgroundColor = ValidColor;
         }
 
         protected override void OnDetachingFrom(Picker bindable)
