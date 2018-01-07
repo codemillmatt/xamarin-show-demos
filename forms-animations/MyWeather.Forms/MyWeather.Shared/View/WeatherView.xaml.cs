@@ -44,8 +44,8 @@ namespace MyWeather.View
 
 
 
+//conditionImage.ScaleTo(1, 1000, Easing.BounceOut);
 //await Task.WhenAll(
-//    conditionImage.ScaleTo(1, 1000, Easing.BounceOut),
 //    conditionImage.FadeTo(1, 500),
 //    conditionLabel.TranslateTo(0, 0, 500, Easing.SinInOut),
 //    conditionLabel.FadeTo(1, 250)
