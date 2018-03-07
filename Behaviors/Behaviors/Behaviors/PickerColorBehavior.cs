@@ -8,7 +8,8 @@ namespace Behaviors
     public class PickerColorBehavior : Behavior<Picker>
     {
 
-        static readonly BindableProperty ValidValuesProperty = BindableProperty.Create(nameof(ValidValues), typeof(string[]), typeof(PickerColorBehavior));
+        static readonly BindableProperty ValidValuesProperty =
+            BindableProperty.Create(nameof(ValidValues), typeof(string[]), typeof(PickerColorBehavior));
 
         public string[] ValidValues
         {
@@ -16,7 +17,8 @@ namespace Behaviors
             set => SetValue(ValidValuesProperty, value);
         }
 
-        static readonly BindableProperty ValidColorProperty = BindableProperty.Create(nameof(ValidColor), typeof(Color), typeof(PickerColorBehavior), Color.Default);
+        static readonly BindableProperty ValidColorProperty =
+            BindableProperty.Create(nameof(ValidColor), typeof(Color), typeof(PickerColorBehavior), Color.Default);
 
         public Color ValidColor
         {
@@ -24,7 +26,8 @@ namespace Behaviors
             set => SetValue(ValidColorProperty, value);
         }
 
-        static readonly BindableProperty InvalidColorProperty = BindableProperty.Create(nameof(InvalidColor), typeof(Color), typeof(PickerColorBehavior), Color.Red);
+        static readonly BindableProperty InvalidColorProperty =
+            BindableProperty.Create(nameof(InvalidColor), typeof(Color), typeof(PickerColorBehavior), Color.Red);
 
         public Color InvalidColor
         {
@@ -32,7 +35,8 @@ namespace Behaviors
             set => SetValue(InvalidColorProperty, value);
         }
 
-        static readonly BindableProperty IsValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(PickerColorBehavior), false);
+        static readonly BindableProperty IsValidProperty =
+            BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(PickerColorBehavior), false);
 
         public bool IsValid
         {
@@ -53,26 +57,31 @@ namespace Behaviors
 
         void Bindable_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Bound and cast to a picker
             if (!(sender is Picker bindable))
                 return;
 
+            // Make sure the picker is data bound
             if (!(bindable.ItemDisplayBinding is Binding displayBinding))
                 return;
 
+            // Get the binding's path
             var displayBindingPath = displayBinding.Path;
 
+            // Use reflection to get the value of the selected item of the picker
             var selectedItem = bindable.SelectedItem.GetType().GetRuntimeProperty(displayBindingPath);
             var selectedText = selectedItem.GetValue(bindable.SelectedItem);
 
+            // Check to see if everything is valid
             if (ValidValues != null && ValidValues.Contains(selectedText))
             {
                 IsValid = true;
-                bindable.BackgroundColor = ValidColor;
+                bindable.BackgroundColor = Color.Default;
             }
             else
             {
                 IsValid = false;
-                bindable.BackgroundColor = InvalidColor;
+                bindable.BackgroundColor = Color.Salmon;
             }
         }
     }

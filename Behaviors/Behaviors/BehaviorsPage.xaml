@@ -9,18 +9,44 @@
         <local:BehaviorsPageViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
 
-    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,40" Spacing="30" Padding="30,0">
+    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Start" 
+        Margin="0,40" Spacing="30" Padding="30,0">
+        
         <Label Text="How Does My Beard Look?" FontSize="32" FontAttributes="Bold" HorizontalTextAlignment="Center" />
         
-        <Picker Title="Rate your beard" 
-            ItemsSource="{Binding BeardRatings}" 
-            SelectedItem="{Binding SelectedBeardRating}" 
-            ItemDisplayBinding="{Binding Description}">
+<Picker Title="Rate your beard" 
+    ItemsSource="{Binding BeardRatings}" 
+    SelectedItem="{Binding SelectedBeardRating}" 
+    ItemDisplayBinding="{Binding Description}">
 
-        </Picker>
-       
+    <Picker.Behaviors>
+        <local:PickerColorBehavior 
+            ValidValues="{x:Static local:BehaviorsPageViewModel.ValidRatings}" 
+            InvalidColor="Fuchsia" 
+            x:Name="pickerValidator" />
+    </Picker.Behaviors>
+    
+</Picker>
+
+<!--
+        <Label Text="Beard Diary" Margin="0,-20" />
+        <Entry>
+            <Entry.Behaviors>
+                <local:EntryPressCommandBehavior Command="{Binding EntryPressCommand}" />
+            </Entry.Behaviors>
+        </Entry> 
+        -->
+
+        
     </StackLayout>
 </ContentPage>
+
+
+
+
+
+
+
 
 
 <!--

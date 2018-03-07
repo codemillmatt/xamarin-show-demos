@@ -13,16 +13,23 @@ namespace Animate
 
         async void Translate_Clicked(object sender, System.EventArgs e)
         {
-            await translateButton.TranslateTo(0, -100);
-            await translateButton.TranslateTo(100, -100);
-            await translateButton.TranslateTo(100, 0);
-            await translateButton.TranslateTo(0, 0);
+            //await translateButton.TranslateTo(100, 0, 4500, Easing.BounceOut);
+            //await translateButton.TranslateTo(0, 0);
+
+            try
+            {
+                ViewExtensions.CancelAnimations(scaleButton);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
         }
 
         async void Scale_Clicked(object sender, System.EventArgs e)
         {
-            await scaleButton.ScaleTo(2);
-            await scaleButton.ScaleTo(1, 500, Easing.BounceOut);
+            await scaleButton.ScaleTo(3, 6000);
+            await scaleButton.ScaleTo(1, 1000, Easing.SpringOut);
         }
 
         async void Rotate_Clicked(object sender, System.EventArgs e)
@@ -33,8 +40,7 @@ namespace Animate
 
         async void Fade_Clicked(object sender, System.EventArgs e)
         {
-            await fadeButton.FadeTo(0);
-            await fadeButton.FadeTo(1, 1000);
+            await fadeButton.FadeTo(0, 1000, Easing.SinInOut);
         }
     }
 }

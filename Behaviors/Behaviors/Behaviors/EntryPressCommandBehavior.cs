@@ -5,7 +5,8 @@ namespace Behaviors
 {
     public class EntryPressCommandBehavior : Behavior<Entry>
     {
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(EntryPressCommandBehavior), null);
+        public static readonly BindableProperty CommandProperty =
+            BindableProperty.Create("Command", typeof(ICommand), typeof(EntryPressCommandBehavior), null);
 
         public ICommand Command
         {

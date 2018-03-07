@@ -10,11 +10,11 @@ namespace Behaviors
     {
         ObservableCollection<Ratings> beardRatings = new ObservableCollection<Ratings>
         {
-            new Ratings{ Description="Fair", StarRating=0 },
-            new Ratings{ Description="Good", StarRating=1 },
-            new Ratings{ Description = "Cool", StarRating=2 },
-            new Ratings{ Description="Great", StarRating=3 },
-            new Ratings{ Description= "Magnificent", StarRating=4 }
+            new Ratings{ Description="Fair", StarRating = 0 },
+            new Ratings{ Description="Good", StarRating = 1 },
+            new Ratings{ Description = "Cool", StarRating = 2 },
+            new Ratings{ Description = "Great", StarRating = 3 },
+            new Ratings{ Description = "Magnificent", StarRating = 4 }
         };
 
         public ObservableCollection<Ratings> BeardRatings
@@ -37,7 +37,8 @@ namespace Behaviors
         }
 
         ICommand entryPressCommand;
-        public ICommand EntryPressCommand => entryPressCommand ?? (entryPressCommand = new Command<string>(ParseBeardText));
+        public ICommand EntryPressCommand => entryPressCommand ?? (entryPressCommand =
+                                                                   new Command<string>(ParseBeardText));
 
         void ParseBeardText(string input)
         {
